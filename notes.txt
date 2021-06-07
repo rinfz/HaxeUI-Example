@@ -1,2 +1,0 @@
-haxelib run haxeui-core build openfl --windows
-haxelib run haxeui-core run openfl --windows
