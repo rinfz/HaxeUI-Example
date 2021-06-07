@@ -1,0 +1,5 @@
+<hbox>
+  <textfield id="textfield" text="0" />
+  <button id="dec" text="-" />
+  <button id="inc" text="+" />
+</hbox>
