@@ -4,24 +4,26 @@ import haxe.ui.macros.ComponentMacros;
 import haxe.ui.containers.HBox;
 import haxe.ui.components.TextField;
 import haxe.ui.components.Button;
+import haxe.ui.events.MouseEvent;
 
+@:build(haxe.ui.macros.ComponentMacros.build("assets/first.xml"))
 class First extends HBox {
   public function new() {
     super();
-    var ui = ComponentMacros.buildComponent("assets/first.xml");
-
-    var textfield = ui.findComponent("textfield", TextField);
-
-    ui.findComponent("dec", Button).onClick = function(e) {
-      var n = Std.parseInt(textfield.text) - 1;
-      textfield.text = Std.string(n);
-    }
-
-    ui.findComponent("inc", Button).onClick = function(e) {
-      var n = Std.parseInt(textfield.text) + 1;
-      textfield.text = Std.string(n);
-    }
-
-    addComponent(ui);
   }
+
+  @:bind(textfield.text)
+    public var textfieldText: String = "10";
+
+  @:bind(dec, MouseEvent.CLICK)
+    function onDec(e) {
+      var n = Std.parseInt(textfieldText) - 1;
+      textfieldText = Std.string(n);
+    }
+
+  @:bind(inc, MouseEvent.CLICK)
+    function onInc(e) {
+      var n = Std.parseInt(textfieldText) + 1;
+      textfieldText = Std.string(n);
+    }
 }
